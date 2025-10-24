@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa universidades: oferta amplia en salud (España) - Versión básica</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<style>body, html {height:100%; margin:0; padding:0;} #map {height:90vh;} header {padding:10px;font-family:Arial,Helvetica,sans-serif;}</style>
+</head>
+<body>
+<header>
+  <h2>Mapa: Universidades con amplia oferta en salud y biosanitarias (España)</h2>
+  <p>Mapa básico con universidades que ofrecen la mayoría de los grados solicitados. <strong>Nota:</strong> las coordenadas son estimadas y pueden necesitar verificación exacta.</p>
+</header>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+var map = L.map('map').setView([40.0, -3.5], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19, attribution: '© OpenStreetMap contributors'}).addTo(map);
+var universities = [{"name": "Universidad de Barcelona", "abbr": "UB", "lat": 41.3869, "lon": 2.17, "url": "https://www.ub.edu/"}, {"name": "Universidad Complutense de Madrid", "abbr": "UCM", "lat": 40.449, "lon": -3.7275, "url": "https://www.ucm.es/"}, {"name": "Universidad de Valencia", "abbr": "UV", "lat": 39.4811, "lon": -0.34, "url": "https://www.uv.es/"}, {"name": "Universidad de Granada", "abbr": "UGR", "lat": 37.1882, "lon": -3.6067, "url": "https://www.ugr.es/"}, {"name": "Universidad de Sevilla", "abbr": "US", "lat": 37.3886, "lon": -5.9953, "url": "https://www.us.es/"}, {"name": "Universidad de Córdoba", "abbr": "UCO", "lat": 37.8882, "lon": -4.7794, "url": "https://www.uco.es/"}, {"name": "Universidad Pública de Navarra", "abbr": "UPNA", "lat": 42.8056, "lon": -1.6466, "url": "https://www.upna.es/"}, {"name": "Universidad Autónoma de Barcelona", "abbr": "UAB", "lat": 41.506, "lon": 2.13, "url": "https://www.uab.cat/"}, {"name": "Universidad de Oviedo", "abbr": "UO", "lat": 43.3609, "lon": -5.8448, "url": "https://www.uniovi.es/"}, {"name": "Universidad de Murcia", "abbr": "UMU", "lat": 37.987, "lon": -1.1295, "url": "https://www.um.es/"}, {"name": "Universidad de Castilla-La Mancha", "abbr": "UCLM", "lat": 39.0, "lon": -3.92, "url": "https://www.uclm.es/"}, {"name": "Universidad Europea (Campus Villaviciosa de Odón)", "abbr": "UE", "lat": 40.3219, "lon": -3.9105, "url": "https://universidadeuropea.com/"}, {"name": "Universidad San Jorge", "abbr": "USJ", "lat": 41.6976, "lon": -0.9006, "url": "https://www.usj.es/"}, {"name": "Universidad de Alicante", "abbr": "UA", "lat": 38.3452, "lon": -0.481, "url": "https://web.ua.es/"}, {"name": "Universitat Oberta de Catalunya (UOC)", "abbr": "UOC", "lat": 41.3851, "lon": 2.1734, "url": "https://www.uoc.edu/"}];
+universities.forEach(function(u) {
+    var marker = L.marker([u.lat, u.lon]).addTo(map);
+    var popup = "<b>" + u.name + " (" + u.abbr + ")</b><br><a href='" + u.url + "' target='_blank'>Sitio web</a>";
+    marker.bindPopup(popup);
+});
+</script>
+</body>
+</html>
